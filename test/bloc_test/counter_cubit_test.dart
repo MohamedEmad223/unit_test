@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:unit_test/bloc/cubit/counter_cubit.dart';
 
@@ -9,8 +10,7 @@ void main() {
       counterCubit = CounterCubit();
     });
 
-
-  // function that call after test
+    // function that call after test
     tearDown(() {
       counterCubit.close();
     });
@@ -19,14 +19,17 @@ void main() {
       expect(counterCubit.state, 0);
     });
 
-    test('the CounterCubit state is incremented when the increment function is called', () {
-      counterCubit.increment();
-      expect(counterCubit.state, 1);
-    });
+    blocTest(
+        'the cubit should emit a CounterState of 1 when the increment function is called',
+        build: () => counterCubit,
+        act: (cubit) => cubit.increment(),
+        expect: () => [1]);
 
-    test('the CounterCubit state is decremented when the decrement function is called', () {
-      counterCubit.decrement();
-      expect(counterCubit.state, -1);
-    });
+    blocTest(
+      'the cubit should emit a CounterState of -1 when the increment function is called',
+      build: () => counterCubit,
+      act: (cubit) => cubit.decrement(),
+      expect: () => [-1],
+    );
   });
 }
