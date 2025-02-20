@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:unit_test/get_list/model/posts_model.dart';
 import 'package:unit_test/get_list_with_cubit/data/repos/fetch_data_repo.dart';
 
 part 'fetchdatacubit_state.dart';

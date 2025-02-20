@@ -12,7 +12,7 @@ final class FetchdatacubitInitial extends FetchdatacubitState {}
 final class FetchdatacubitLoading extends FetchdatacubitState {}
 
 final class FetchdatacubitLoaded extends FetchdatacubitState {
-  final List<PostsModel> posts;
+  final String posts;
   const FetchdatacubitLoaded(this.posts);
 
   @override
