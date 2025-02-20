@@ -37,11 +37,16 @@ void main() {
     ],
   );
 
-  blocTest('emit dataFaliureState',
-      build: () {
-        when(mocNetworkService.fetchList()).thenThrow(Exception('error'));
-        return fetchdatacubitCubit;
-      },
-      act: (cubit) => cubit.fetchData(),
-      expect: () => {FetchdatacubitError('error')});
+  blocTest<FetchdatacubitCubit, FetchdatacubitState>(
+    'emit state dataLoading and dataError',
+    build: () {
+      when(mocNetworkService.fetchList()).thenThrow(Exception('error'));
+      return fetchdatacubitCubit;
+    },
+    act: (cubit) => cubit.fetchData(),
+    expect: () => [
+      FetchdatacubitLoading(),
+      FetchdatacubitError('error')
+    ],
+  );
 }
